@@ -1,0 +1,34 @@
+<ion-view view-title="Chats">
+    <ion-header-bar class="bar bar-subheader item-input-inset">
+        <label class="item item-select col-50">
+            Filtrar
+            <select ng-model="filterTemplateStatus.categoria">
+                <option value="">Todas</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Alimentos">Alimentos</option>
+                <option value="Manualidades">Manualidades</option>
+            </select>
+        </label>
+        <label class="item-input col-50" >
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchText" ng-change="scrollTop()">
+        </label>
+    </ion-header-bar>
+    <ion-content class="has-header">
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" 
+                      ng-repeat="provider in providers|filterObject:searchText|filterObject:filterTemplateStatus"
+                      type="item-text-wrap" href="#/tab/provider/{{provider.id}}">
+                <img ng-src="{{provider.logo}}"
+                     onerror="if(this.src.indexOf('nopreview.jpg') < 0 ) this.src = 'img/nopreview.jpg';">
+                <h2>{{provider.negocio}}</h2>
+                <p>{{provider.duenio}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <ion-option-button class="button-assertive" ng-click="remove(provider)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
