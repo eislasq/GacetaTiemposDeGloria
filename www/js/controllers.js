@@ -1,44 +1,43 @@
 angular.module('starter.controllers', [])
 
         .controller('AboutCtrl', function ($scope) {
+            $scope.registeredProviders = window.registeredProviders;
         })
 
         .controller('ProvidersCtrl', function ($scope, Providers) {
             $scope.providers = [];
             $scope.filterTemplateStatus = {categoria: ''};
-            Providers.getProviders(function (respuesta) {
-//                console.log(respuesta);
-                var providers = {};
-                for (var entryIndex in respuesta.data.feed.entry) {
-                    var entry = respuesta.data.feed.entry[entryIndex];
-                    var provider = {};
-                    for (var propertyName in entry) {
-                        var property = entry[propertyName];
-                        if (propertyName.indexOf('gsx$') >= 0) {
-                            var newPropertyName = propertyName.substr(4, propertyName.length - 4);
-                            if (newPropertyName === 'logo' && !property['$t']) {
-                                property['$t'] = 'img/nopreview.jpg';
-                            }
-                            provider[newPropertyName] = property['$t'];
-//                            console.log(propertyName, newPropertyName, property);
-                        }
-
-                    }
-//                    console.log(provider);
-                    providers[provider.id] = provider;
-
-                }
-                console.log(providers);
+            Providers.getProviders(function (providers) {
+                window.registeredProviders = Object.keys(providers).length;
+                console.log(window.registeredProviders);
                 $scope.providers = providers;
             });
         })
 
-        .controller('ProviderDetailCtrl', function ($scope, $stateParams, Chats) {
-            $scope.chat = Chats.get($stateParams.chatId);
+        .controller('ProviderDetailCtrl', function ($scope, $stateParams, Providers) {
+            console.log($stateParams);
+            $scope.provider = Providers.getProviderById($stateParams.providerId);
+            console.log($scope.provider);
         })
 
         .controller('LocationCtrl', function ($scope) {
-            $scope.settings = {
-                enableFriends: true
+            var myLatlng = new google.maps.LatLng(-98.451363, 19.707787);
+
+            var myOptions = {
+                center: myLatlng,
+                zoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
             };
+
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: "Tiempos de Gloria!"
+            });
+
+// To add the marker to the map, call setMap();
+            marker.setMap(map);
+
         });

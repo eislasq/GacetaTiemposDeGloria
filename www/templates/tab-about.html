@@ -1,28 +1,35 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
+    <ion-content class="padding">
+        <div class="list card">
+            <div class="item item-divider">Creado por</div>
+            <div class="item item-body">
+                <div>
+                    Familia Islas Cruz
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
+        <div class="list card">
+            <div class="item item-divider">Codigo libre</div>
+            <div class="item item-body">
+                <div>
+                    <p>
+                        Esta aplicacion se ha liberado bajo la licensia 
+                        <a class="positive" onclick="window.open('http://www.gnu.org/licenses/gpl.txt', '_system', 'location=yes');">GPL</a>
+                    </p>
+                    Usa, Estudia, Modifica, Comparte 
+                    <a class="positive" onclick="window.open('https://github.com/eislasq/GacetaTiemposDeGloria', '_system', 'location=yes');">    
+                        GitHub
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
+        <div class="list card">
+            <div class="item item-divider">Proveedores registrados</div>
+            <div class="item item-body">
+                <div>
+                    A la fecha se encuentran registrados <b>{{registeredProviders}}</b> proveedores de productos y servicios.
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-view>
