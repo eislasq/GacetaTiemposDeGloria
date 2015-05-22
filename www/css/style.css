@@ -1,1 +1,20 @@
 /* Empty. Add your own CSS if you like */
+
+#background-provider, #background-provider-preview{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@media (max-aspect-ratio: 320/480){
+    #background-provider, #background-provider-preview{
+        background-size: auto 100%;
+    }
+}
+
+.platform-android .bar-subheader.has-tabs-top{
+    top:93px !important;
+}
+
+.platform-android .has-subheader.has-tabs-top{
+    top:137px;
+}

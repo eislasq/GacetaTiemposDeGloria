@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('gaceta.controllers', [])
 
         .controller('AboutCtrl', function ($scope) {
             $scope.registeredProviders = window.registeredProviders;
@@ -20,24 +20,96 @@ angular.module('starter.controllers', [])
             console.log($scope.provider);
         })
 
-        .controller('LocationCtrl', function ($scope) {
-            var myLatlng = new google.maps.LatLng(-98.451363, 19.707787);
-
-            var myOptions = {
-                center: myLatlng,
-                zoom: 4,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                disableDefaultUI: true
+        .controller('EditCtrl', function ($scope, WS, $ionicLoading, $ionicScrollDelegate, Categories) {
+            $scope.categorias = Categories;
+            var llave = localStorage.getItem('llave');
+            if (llave && llave != 'null' && llave != 'undefined' && llave != 'false') {
+                $scope.llave = llave;
+                $scope.recordarLlave = true;
+            } else {
+                $scope.recordarLlave = false;
+            }
+            $scope.cambioRecordarLlave = function (recordarLlave, llave) {
+                $scope.recordarLlave = recordarLlave;
+                $scope.almacenarLlave(llave);
             };
-
-            var map = new google.maps.Map(document.getElementById("map"), myOptions);
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                title: "Tiempos de Gloria!"
-            });
-
-// To add the marker to the map, call setMap();
-            marker.setMap(map);
-
+            $scope.almacenarLlave = function (llave) {
+                if ($scope.recordarLlave) {
+                    console.log('almacenando llave', llave);
+                    localStorage.setItem('llave', llave);
+                } else {
+                    console.log('eliminando llave');
+                    localStorage.removeItem('llave');
+                }
+            };
+            $scope.entrar = function (llave) {
+                var request = WS.miNegocio(llave);
+                $ionicLoading.show({
+                    template: 'Espere...'
+                });
+                request.then(function (result) {/* success function */
+                    console.log('success');
+                    console.log(result);
+                    $scope.negocio = result.data.response;
+                    $ionicLoading.hide();
+                    console.log(result.data.output);
+                    if (!result.data.response) {
+                        alert(':( Llave invalida');
+                    } else {
+                        $ionicScrollDelegate.resize();
+                    }
+                },
+                        function (result) {/* error function */
+                            console.log('error');
+                            console.log(result);
+                            $ionicLoading.hide();
+                            alert(':( Algo anda mal con la conección; ' + result.statusText);
+                        });
+            };
+            if ($scope.llave) {
+                $scope.entrar($scope.llave);
+            }
+            $scope.salir = function () {
+                $scope.negocio = false;
+                if (!$scope.recordarLlave) {
+                    $scope.llave = '';
+                }
+                $ionicScrollDelegate.resize();
+            };
+            $scope.nuevaSucursal = function () {
+                $scope.negocio.sucursales.push({nombre: $scope.negocio.sucursales.length + 1});
+                $ionicScrollDelegate.resize();
+                $ionicScrollDelegate.scrollBy(0, 100, true);
+            };
+            $scope.eliminarSucursal = function (sucursalIndex) {
+                if (confirm('Confirma que quieres eliminar esta sucursal')) {
+                    $scope.negocio.sucursales.splice(sucursalIndex, 1);
+                    $ionicScrollDelegate.resize();
+                }
+            };
+            $scope.guardarCambios = function (llave) {
+                console.log('guardar', llave, $scope.negocio);
+                var request = WS.guardarMiNegocio(llave, $scope.negocio);
+                $ionicLoading.show({
+                    template: 'Espere...'
+                });
+                request.then(function (result) {/* success function */
+                    console.log('success');
+                    console.log(result);
+                    $ionicLoading.hide();
+                    console.log(result.data.output);
+                    if (!result.data.response) {
+                        alert(':( No se pudo guardar.');
+                    } else {
+                        alert(':) Guardaro con éxito!');
+                        $scope.entrar(llave);
+                    }
+                },
+                        function (result) {/* error function */
+                            console.log('error');
+                            console.log(result);
+                            $ionicLoading.hide();
+                            alert(':( Algo anda mal con la conección; ' + result.statusText);
+                        });
+            }
         });

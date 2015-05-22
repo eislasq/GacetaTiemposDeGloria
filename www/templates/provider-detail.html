@@ -5,14 +5,14 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{provider.negocio}}">
-    <ion-content class="padding" style="background-image: url('{{provider.banner}}'); 
-                 background-size: 100%;
-                 background-repeat: no-repeat;
-                 background-position: center;">
+    <ion-content id="background-provider" class="padding" style="background-image: url('{{provider.banner}}'); ">
         <img ng-src="{{provider.logo}}" style="width: 64px; height: 64px">
-        <pre style="text-shadow: 2px 2px 3px white;">
-      {{provider.descripcion}}
-        </pre>
+
+        <div class="card" style="opacity: 0.8;">
+            <div class="item item-text-wrap">
+                <pre style="text-shadow: 2px 2px 3px white;">{{provider.descripcion}}</pre>
+            </div>
+        </div>
         <div class="list card" style="opacity: 0.8;">
             <div class="item item-divider">
                 Dirección:

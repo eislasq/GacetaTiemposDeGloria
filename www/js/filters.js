@@ -1,4 +1,4 @@
-angular.module('starter.filters', [])
+angular.module('gaceta.filters', [])
         .filter('filterObject', function () {
             return function (items, search) {
                 if (search && search['*'] != undefined) {

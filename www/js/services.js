@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('gaceta.services', [])
 
         .service('Providers', function ($http) {
 
@@ -20,34 +20,34 @@ angular.module('starter.services', [])
                 if (Object.keys(this.providers).length > 0) {
                     console.log('providers cacheados');
                     callback(this.providers);
-                } 
-                    console.log('providers from google');
-                    request.then(function (result) {/* success function */
-                        var providers = {};
-                        for (var entryIndex in result.data.feed.entry) {
-                            var entry = result.data.feed.entry[entryIndex];
-                            var provider = {};
-                            for (var propertyName in entry) {
-                                var property = entry[propertyName];
-                                if (propertyName.indexOf('gsx$') >= 0) {
-                                    var newPropertyName = propertyName.substr(4, propertyName.length - 4);
-                                    if (newPropertyName === 'logo' && !property['$t']) {
-                                        property['$t'] = 'img/nopreview.jpg';
-                                    }
-                                    provider[newPropertyName] = property['$t'].trim();
+                }
+                console.log('providers from google');
+                request.then(function (result) {/* success function */
+                    var providers = {};
+                    for (var entryIndex in result.data.feed.entry) {
+                        var entry = result.data.feed.entry[entryIndex];
+                        var provider = {};
+                        for (var propertyName in entry) {
+                            var property = entry[propertyName];
+                            if (propertyName.indexOf('gsx$') >= 0) {
+                                var newPropertyName = propertyName.substr(4, propertyName.length - 4);
+                                if (newPropertyName === 'logo' && !property['$t']) {
+                                    property['$t'] = 'img/nopreview.jpg';
                                 }
+                                provider[newPropertyName] = property['$t'].trim();
                             }
-                            providers[provider.id] = provider;
-
                         }
-                        localStorage.setItem('providers', JSON.stringify(providers));
-                        callback(providers);
-                    },
-                            function (result) {/* error function */
-                                console.log('Error: ', result);
-                                callback(this.providers);
-                            });
-                
+                        providers[provider.id] = provider;
+
+                    }
+                    localStorage.setItem('providers', JSON.stringify(providers));
+                    callback(providers);
+                },
+                        function (result) {/* error function */
+                            console.log('Error: ', result);
+                            callback(this.providers);
+                        });
+
             };
             this.getProviderById = function (id) {
                 var p = localStorage.getItem('providers')
@@ -56,6 +56,51 @@ angular.module('starter.services', [])
             };
 
 
+        })
+
+        .service('WS', function ($http) {
+//            this.serverUrl = 'http://gaceta.bugs3.com/server.php';
+            this.serverUrl = 'http://localhost/~eislas/GacetaServer/server.php';
+//            this.serverUrl = 'http://resolute-oxygen-95315.appspot.com';
+            this.miNegocio = function (llave) {
+                var request = $http({
+                    url: this.serverUrl + '?action=miNegocio'
+                    , async: true
+                    , method: 'POST'
+                    , data: {llave: llave}
+                    , headers: {
+                        'Accept': 'application/json, text/javascript, */*; q=0.01'
+                        , 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    }
+                });
+                return request;
+            };
+            this.guardarMiNegocio = function (llave, negocio) {
+                var request = $http({
+                    url: this.serverUrl + '?action=guardarMiNegocio'
+                    , async: true
+                    , method: 'POST'
+                    , data: {llave: llave, negocio: negocio}
+                    , headers: {
+                        'Accept': 'application/json, text/javascript, */*; q=0.01'
+                        , 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    }
+                });
+                return request;
+            };
+            this.obtenerCategorias = function () {
+                var request = $http({
+                    url: this.serverUrl + '?action=obtenerCategorias'
+                    , async: true
+                    , method: 'POST'
+                    , data: {}
+                    , headers: {
+                        'Accept': 'application/json, text/javascript, */*; q=0.01'
+                        , 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    }
+                });
+                return request;
+            };
         })
 
         .factory('Chats', function () {

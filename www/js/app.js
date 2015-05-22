@@ -1,11 +1,11 @@
-// Ionic Starter App
+// Ionic Gaceta App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'gaceta' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.filters'])
+// 'gaceta.services' is found in services.js
+// 'gaceta.controllers' is found in controllers.js
+angular.module('gaceta', ['ionic', 'gaceta.controllers', 'gaceta.services', 'gaceta.filters', 'gaceta.factories'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -67,12 +67,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-  .state('tab.location', {
-    url: '/location',
+  .state('tab.edit', {
+    url: '/edit',
     views: {
-      'tab-location': {
-        templateUrl: 'templates/tab-location.html',
-        controller: 'LocationCtrl'
+      'tab-edit': {
+        templateUrl: 'templates/tab-edit.html',
+        controller: 'EditCtrl'
       }
     }
   });
