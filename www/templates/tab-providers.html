@@ -1,12 +1,10 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Proveedores">
     <ion-header-bar class="bar bar-subheader item-input-inset">
         <label class="item item-select col-50">
             Filtrar
             <select ng-model="filterTemplateStatus.categoria">
                 <option value="">Todas</option>
-                <option value="Servicios">Servicios</option>
-                <option value="Alimentos">Alimentos</option>
-                <option value="Manualidades">Manualidades</option>
+                <option ng-repeat="categoria in categorias" value="{{categoria.categoria_id}}">{{categoria.nombre}}</option>
             </select>
         </label>
         <label class="item-input col-50" >
@@ -17,11 +15,11 @@
     <ion-content class="has-header">
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right" 
-                      ng-repeat="provider in providers|filterObject:searchText|filterObject:filterTemplateStatus"
-                      type="item-text-wrap" href="#/tab/provider/{{provider.id}}">
+                      ng-repeat="provider in providers|filter:searchText|filter:filterTemplateStatus"
+                      type="item-text-wrap" href="#/tab/provider/{{provider.negocio_id}}">
                 <img ng-src="{{provider.logo}}"
                      onerror="if(this.src.indexOf('nopreview.jpg') < 0 ) this.src = 'img/nopreview.jpg';">
-                <h2>{{provider.negocio}}</h2>
+                <h2>{{provider.nombre}}</h2>
                 <p>{{provider.duenio}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 

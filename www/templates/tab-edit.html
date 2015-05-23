@@ -4,10 +4,10 @@
             <label class="checkbox">
                 <input type="checkbox" ng-model="recordarLlave" ng-change="cambioRecordarLlave(recordarLlave, llave)">
             </label>
-            Recordar llave
+            Recuérdame
         </div>
         <button ng-show="negocio" ng-click="salir()" class="item-input col-50 button 
-                icon-left ion-log-out button-assertive text-left">Salir</button>
+                icon-right ion-log-out button-assertive text-left">Salir</button>
     </ion-header-bar>
     <ion-content id="background-provider-preview" style="background-image: url('{{negocio.banner}}'); " >
         <div class="list" ng-hide="negocio">
@@ -22,9 +22,12 @@
                 <label class="item item-input item-divider item-positive">
                     {{negocio.nombre}}
                 </label>
+                <label class="item item-input item-divider item-stable item-text-wrap">
+                    Todos los campos son opcionales
+                </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label positive">Negocio:</span>
-                    <input ng-model="negocio.nombre">
+                    <input ng-model="negocio.nombre" placeholder="Nombre de tu negocio">
                 </label>
                 <label class="item item-select item-stacked-label">
                     <span class="input-label positive">Categoria:</span>
@@ -34,22 +37,22 @@
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label positive">Dueño:</span>
-                    <input ng-model="negocio.duenio">
+                    <input ng-model="negocio.duenio" placeholder="Nombre del dueño">
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label positive">Descripcion:</span>
-                    <textarea rows="10" ng-model="negocio.descripcion"></textarea>
+                    <textarea rows="10" ng-model="negocio.descripcion" placeholder="Describe aquí tu producto o servicio"></textarea>
                 </label>
                 <label class="item item-input item-stacked-label item-avatar">
                     <img src="{{negocio.logo}}">
                     <span class="input-label positive">Logo:</span>
-                    <input ng-model="negocio.logo">
+                    <input ng-model="negocio.logo" placeholder="http://direccion/web">
                 </label>
                 <label class="item item-input item-stacked-label" style="background-image: url('{{negocio.banner}}'); 
                        background-size: auto 100%;
                        background-repeat: no-repeat;">
                     <span class="input-label positive">Banner:</span>
-                    <input ng-model="negocio.banner">
+                    <input ng-model="negocio.banner" placeholder="http://direccion/web">
                 </label>
             </div>
             <div class="list card" ng-repeat="(sucursalIndex, sucursal) in negocio.sucursales">

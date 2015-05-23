@@ -13,29 +13,30 @@
                 <pre style="text-shadow: 2px 2px 3px white;">{{provider.descripcion}}</pre>
             </div>
         </div>
-        <div class="list card" style="opacity: 0.8;">
+        <div class="list card" style="opacity: 0.8;" ng-repeat="sucursal in provider.sucursales">
+            <div class="item item-divider item-balanced">
+                Sucursal {{sucursal.nombre}}
+            </div>
             <div class="item item-divider">
                 Dirección:
             </div>
             <div class="item item-text-wrap">
-                Calle {{provider.calle}}
-                #{{provider.numeroext}}
-                {{provider.numeroint}},
-                {{provider.colonia}},
-                {{provider.localidad}},
-                {{provider.municipio}}
-                {{provider.estado}}
+                Calle {{sucursal.calle}}
+                #{{sucursal.numeroext}}
+                {{sucursal.numeroint}},
+                {{sucursal.colonia}},
+                {{sucursal.localidad}},
+                {{sucursal.municipio}}
+                {{sucursal.estado}}
             </div>
-        </div>
-        <div class="list card" style="opacity: 0.8;">
             <div class="item item-divider">
                 Teléfonos;
             </div>
             <div class="item item-text-wrap">
-                {{provider.telefono}}
+                {{sucursal.telefonos}}
             </div>
             <div class="item item-text-wrap">
-                {{provider.celular}}
+                {{sucursal.celulares}}
             </div>
         </div>
     </ion-content>

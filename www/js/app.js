@@ -5,7 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'gaceta.services' is found in services.js
 // 'gaceta.controllers' is found in controllers.js
-angular.module('gaceta', ['ionic', 'gaceta.controllers', 'gaceta.services', 'gaceta.filters', 'gaceta.factories'])
+angular.module('gaceta', ['ionic'
+    , 'gaceta.controllers'
+    , 'gaceta.services'
+    , 'gaceta.filters'
+    , 'gaceta.factories'
+    , 'gaceta.controllers.edit'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
