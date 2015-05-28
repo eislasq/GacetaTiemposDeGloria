@@ -11,11 +11,13 @@
     </ion-header-bar>
     <ion-content id="background-provider-preview" style="background-image: url('{{negocio.banner}}'); " >
         <div class="list" ng-hide="negocio">
-            <label class="item item-input item-stacked-label item-text-wrap item-icon-right">
+            <label class="item item-input item-stacked-label item-text-wrap">
                 <input placeholder="Llave de acceso" ng-model="llave" ng-change="almacenarLlave(llave)">
-                <i class="icon ion-camera"></i>
             </label>
-            <button class="button button-block button-positive button-outline" ng-click="entrar(llave)">Entrar</button>
+            <button ng-click="escanearLlave()" class="button button-block 
+                    button-positive button-outline icon-right ion-camera">
+                Escanear llave</button>
+            <button class="button button-block button-balanced button-outline" ng-click="entrar(llave)">Entrar</button>
         </div>
         <div ng-show="negocio" id="negocio">
             <div class="list" style="opacity: 0.8; background: white;">

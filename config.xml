@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.IslasCruz.GacetaTiemposDeGloria" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Tiempos De Gloria</name>
+<widget id="com.IslasCruz.GacetaTiemposDeGloria" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Servicios</name>
   <description>
-        Catalogo de Productos y cervicios ofrecidos por los miembros de la congregacion Tiempos de Gloria
+        Catalogo de Productos y servicios ofrecidos por los miembros de la congregacion Tiempos de Gloria
     </description>
   <author email="eislasq@gmail.com" href="">
-      Eliut Islas
+      Familia Islas Cruz
     </author>
   <content src="index.html"/>
   <access origin="*"/>

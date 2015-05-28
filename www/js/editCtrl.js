@@ -116,5 +116,34 @@ angular.module('gaceta.controllers.edit', [])
                     ix.blur();
                 });
             };
+
+            $scope.escanearLlave = function () {
+                $ionicLoading.show({
+                    template: 'Abriendo la camara...'
+                });
+                console.log('escanear');
+//                setTimeout(function () {
+//                    var llave = 123;
+//                    $scope.llave = llave;
+//                    $scope.entrar(llave);
+//                    $scope.almacenarLlave(llave);
+//                }, 0);
+                cordova.plugins.barcodeScanner.scan(
+                        function (result) {
+                            $ionicLoading.hide();
+                            var llave = result.text;
+                            if (!llave) {
+                                return false;
+                            }
+                            $scope.llave = llave;
+                            $scope.entrar(llave);
+                            $scope.almacenarLlave(llave);
+                        },
+                        function (error) {
+                            $ionicLoading.hide();
+                            alert("Fallo el escaneo: " + error);
+                        }
+                );
+            };
         })
         ;
