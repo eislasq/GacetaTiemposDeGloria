@@ -14,8 +14,10 @@
             </div>
         </div>
         <div class="list card" style="opacity: 0.8;" ng-repeat="sucursal in provider.sucursales">
-            <div class="item item-divider item-balanced">
+            <div class="item item-divider item-balanced item-icon-right">
                 Sucursal {{sucursal.nombre}}
+                <i class="contact-icon icon ion-map" ng-click="geolocation(sucursal)"></i>
+                <i style="font-size: 20px; color: #387ef5;" class="contact-icon icon ion-search" ng-click="geolocation(sucursal)"></i>
             </div>
             <div class="item item-divider">
                 Dirección:
@@ -30,14 +32,29 @@
                 {{sucursal.estado}}
             </div>
             <div class="item item-divider">
-                Teléfonos;
+                Teléfonos:
             </div>
-            <div class="item item-text-wrap">
-                {{sucursal.telefonos}}
+            <div class="item item-text-wrap" ng-repeat="telefono in splitNumbers(sucursal.telefonos)">
+                {{telefono}}
+                <i ng-click="call(telefono)" class="contact-icon icon ion-android-call"></i>
             </div>
-            <div class="item item-text-wrap">
-                {{sucursal.celulares}}
+            <div class="item item-text-wrap" ng-repeat="celular in splitNumbers(sucursal.celulares)">
+                {{celular}}
+                <i ng-click="call(celular)" class="contact-icon icon ion-android-call"></i>
+                <i ng-click="sms(celular)" class="contact-icon icon ion-android-textsms"></i>
             </div>
+            <style>
+                .contact-icon{
+                    font-size: 25px;
+                    margin-left: 15px
+                }
+                .contact-icon.ion-android-call{
+                    color: green;
+                }
+                .contact-icon.ion-android-textsms{
+                    color: orange;
+                }
+            </style>
         </div>
     </ion-content>
 </ion-view>

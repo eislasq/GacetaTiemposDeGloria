@@ -20,5 +20,28 @@ angular.module('gaceta.controllers', [])
 //            console.log($stateParams);
             $scope.provider = Providers[$stateParams.providerId];
 //            console.log($scope.provider);
+
+            $scope.splitNumbers = function (numeros) {
+                if (numeros) {
+                    return numeros.split(',');
+                }
+            };
+
+            $scope.call = function (numero) {
+                window.open('tel:' + numero, '_system', 'location=yes');
+            };
+
+            $scope.sms = function (numero) {
+                window.open('sms:' + numero, '_system', 'location=yes');
+            };
+
+            $scope.geolocation = function (sucursal) {
+                var address = sucursal.calle
+                        + ' ' + sucursal.numero_exterior
+                        + ' ' + sucursal.localidad
+                        + ' ' + sucursal.estado
+                        ;
+                window.open('https://maps.google.com?q=' + escape(address), '_system', 'location=yes');
+            };
         })
         ;

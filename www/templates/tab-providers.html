@@ -2,7 +2,7 @@
     <ion-header-bar class="bar bar-subheader item-input-inset">
         <label class="item item-select col-50">
             Filtrar
-            <select ng-model="filterTemplateStatus.categoria">
+            <select ng-model="filterTemplateStatus.categoria_id">
                 <option value="">Todas</option>
                 <option ng-repeat="categoria in categorias" value="{{categoria.categoria_id}}">{{categoria.nombre}}</option>
             </select>
