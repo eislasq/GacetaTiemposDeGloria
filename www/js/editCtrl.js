@@ -121,13 +121,6 @@ angular.module('gaceta.controllers.edit', [])
                 $ionicLoading.show({
                     template: 'Abriendo la camara...'
                 });
-                console.log('escanear');
-//                setTimeout(function () {
-//                    var llave = 123;
-//                    $scope.llave = llave;
-//                    $scope.entrar(llave);
-//                    $scope.almacenarLlave(llave);
-//                }, 0);
                 cordova.plugins.barcodeScanner.scan(
                         function (result) {
                             $ionicLoading.hide();
