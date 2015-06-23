@@ -13,7 +13,7 @@ angular.module('gaceta', ['ionic'
     , 'gaceta.controllers.edit'
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, AdMob) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -24,6 +24,7 @@ angular.module('gaceta', ['ionic'
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    AdMob.init();
   });
 })
 
