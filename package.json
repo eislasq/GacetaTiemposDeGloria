@@ -18,7 +18,11 @@
     "org.apache.cordova.inappbrowser",
     "com.ionic.keyboard",
     "org.apache.cordova.device",
-    "com.phonegap.plugins.barcodescanner"
+    "com.phonegap.plugins.barcodescanner",
+    "com.google.playservices",
+    "cordova-plugin-whitelist"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

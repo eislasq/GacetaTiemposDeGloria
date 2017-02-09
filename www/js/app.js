@@ -24,7 +24,7 @@ angular.module('gaceta', ['ionic'
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    AdMob.init();
+    //AdMob.init();
   });
 })
 

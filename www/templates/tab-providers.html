@@ -15,7 +15,7 @@
     <ion-content class="has-header">
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right" 
-                      ng-repeat="provider in providers|filter:searchText|filter:filterTemplateStatus"
+                      ng-repeat="provider in providers|filter:searchText|filter:filterTemplateStatus|orderBy:'fecha_actualizacion'"
                       type="item-text-wrap" href="#/tab/provider/{{provider.negocio_id}}">
                 <img ng-src="{{provider.logo}}"
                      onerror="if(this.src.indexOf('nopreview.jpg') < 0 ) this.src = 'img/nopreview.jpg';">
